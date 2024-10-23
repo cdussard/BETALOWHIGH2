@@ -13,7 +13,7 @@ function process(box)
     box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0)
 	t = t + 2
 
-	box:send_stimulation(1, OVTK_StimulationId_Label_0A, t, 0) --instruction Rest 
+	box:send_stimulation(1, OVTK_StimulationId_Label_0D, t, 0) --instruction Rest 
 		
 	t = t + instruction_duration
 	box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
