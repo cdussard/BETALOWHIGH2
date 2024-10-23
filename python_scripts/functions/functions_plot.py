@@ -55,9 +55,22 @@ def compare_power(all_data,fmin,fmax,pick):
         data = all_data[i]
         data_C3 = data.get_data(picks=[pick])
         info_C3 = mne.create_info(["C3"], 1000, ch_types='eeg', verbose=None)
-        data_C3 = data_C3[0]
-        rawmoy_C3 = mne.io.RawArray(data_C3,info_C3)
-        rawmoy_C3.plot_psd(ax=axs[0],fmin=fmin,fmax=fmax,tmin = tmin,tmax=tmax,dB=False,color=cols[i],picks=pick,spatial_colors=False)
+        data_C3_ = data_C3[0]
+        rawmoy_C3 = mne.io.RawArray(data_C3_,info_C3)
+        rawmoy_C3.plot_psd(ax=axs[0],fmin=fmin,fmax=fmax,tmin = tmin,tmax=tmax,dB=False,color=cols[i] ,spatial_colors=False)
+        
+        data_C3 = data.get_data(picks=['C3'])
+        data_CP1 = data.get_data(picks=['CP1'])
+        data_CP5 = data.get_data(picks=['CP5'])
+        data_FC1 = data.get_data(picks=['FC1'])
+        data_FC5 = data.get_data(picks=['FC5'])
+        
+        laplacianC3_data = data_C3 - 1/4 * (data_CP1 + data_CP5 + data_FC1 + data_FC5)
+        laplacianC3_data_ = laplacianC3_data[0]
+        info_laplacian = mne.create_info(["laplacian_C3"], 1000, ch_types='eeg', verbose=None)
+        rawLaplacian_C3 = mne.io.RawArray(laplacianC3_data_,info_laplacian)
+        rawLaplacian_C3.plot_psd(ax=axs[1],fmin=fmin,fmax=fmax,tmin = tmin,tmax=tmax,dB=False,color=cols[i],spatial_colors=False)
+        
         
     
     
