@@ -5,7 +5,7 @@ function initialize(box)
 	math.randomseed(os.time())
     pre_trial_baseline_duration = box:get_setting(2) 
     instruction_duration =  box:get_setting(3) 
-    --nb_of_blocks = box:get_setting(4) 
+    nb_of_blocks = box:get_setting(4) 
     nb_trials_per_block = box:get_setting(5)
 	inter_block_duration = box:get_setting(6)
     breakPostTrial_min_duration = box:get_setting(7) 
@@ -13,9 +13,9 @@ function initialize(box)
 	neurofeedback_trial_duration = box:get_setting(9)
 	initial_FB_wait_duration = box:get_setting(10) 
     sequence_yoked_nf_blocks = {}
-	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_14)--YOKED
+	--table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_14)--YOKED
 	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)--NF
-	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)--NF
+	--[[table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)--NF
 	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)-- NF
     table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)-- NF
     table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_14)--YOKED
@@ -23,7 +23,7 @@ function initialize(box)
 	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)--NF
 	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)-- NF
     table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)-- NF
-    table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_14)--YOKED
+    table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_14)--YOKED --]]
 
 end
 
@@ -41,16 +41,15 @@ function process(box)
     box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
 
     t = t + 1
-    for i = 1, #sequence_yoked_nf_blocks do --nb_of_blocks do
-        if sequence_yoked_nf_blocks[i] == OVTK_StimulationId_Number_13 then
-            box:send_stimulation(1, OVTK_StimulationId_Label_0C, t, 0) -- instruction imagine
-        else
-            box:send_stimulation(1, OVTK_StimulationId_Label_0A, t, 0) -- instruction obs
-        end
+    for i = 1, nb_of_blocks do
+        --if sequence_yoked_nf_blocks[i] == OVTK_StimulationId_Number_13 then
+        box:send_stimulation(1, OVTK_StimulationId_Label_0C, t, 0) -- instruction imagine
+        --else
+           -- box:send_stimulation(1, OVTK_StimulationId_Label_0A, t, 0) -- instruction obs
+        --end
         t = t + instruction_duration
         box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
-
-        t = t + 1
+--t = t + 1
         for j = 1, nb_trials_per_block do
             t = t + 1
             box:send_stimulation(1, sequence_yoked_nf_blocks[i], t, 0) -- debut trial nf ou yoked / 13 ou 14
@@ -83,18 +82,18 @@ function process(box)
             box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
         end
         t = t + 1
-        box:send_stimulation(1, OVTK_StimulationId_Label_1E, t, 0) --instruction questionnaire 
+        box:send_stimulation(1, OVTK_StimulationId_Label_1E, t, 0) --instruction questionnaire , pause entre les blocs
         t = t + inter_block_duration --1 min
         box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
 
         t = t + 1
-        if sequence_yoked_nf_blocks[i] == OVTK_StimulationId_Number_13 then
-            box:send_stimulation(1, OVTK_StimulationId_Label_1F, t, 0)-- display FB on performance ONLY IN NF trials
-            t = t + instruction_duration
-            box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
-        end
+        --if sequence_yoked_nf_blocks[i] == OVTK_StimulationId_Number_13 then
+            --box:send_stimulation(1, OVTK_StimulationId_Label_1F, t, 0)-- display FB on performance ONLY IN NF trials
+            --t = t + instruction_duration
+            --box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
+       -- end
 
-        t = t + 1
+        --t = t + 1
 
     end
     t = t + 1 -- voir s'il y a une latence de fermeture du .exe
