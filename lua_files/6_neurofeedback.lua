@@ -3,6 +3,7 @@ function initialize(box)
 	dofile(box:get_config("${Path_Data}") .. "/plugins/stimulation/lua-stimulator-stim-codes.lua")
 	-- initializes random seed
 	math.randomseed(os.time())
+    pre_trial_baseline_duration = box:get_setting(2) 
     instruction_duration =  box:get_setting(3) 
     nb_of_blocks = box:get_setting(4) 
     nb_trials_per_block = box:get_setting(5)
