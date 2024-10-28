@@ -22,15 +22,15 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     string path_build = @"..\..\..\csv_files\";
     public float seuilPireBeta = 10.417f;
     public float seuilMeilleurBeta =3.9141f;
-    public float seuilPireBeta_parasite = 5.0f;
-    public float seuilMeilleurBeta_parasite = 2.0f;
+    float seuilPireBeta_parasite = 0.05f;
+    float seuilMeilleurBeta_parasite = 0.02f;
     public string numSujet = "suj6_";
     public string numSession = "ses01_";
     float slope;
     float intercept;
-    float slope_parasite;
-    float intercept_parasite;
-    float opaciteMax = 0.66f;
+    public float slope_parasite;
+    public float intercept_parasite;
+    public float opaciteMax = 0.66f;
     // samples
     float[] lastSample = new float[2];
     public float currentBetaValue = -1.0f;
@@ -124,6 +124,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     void Awake()
     {
         Debug.Log("awake");
+        opaciteMax = 1.0f;
         seuilPireBeta = 4.02150537634409f;
         seuilMeilleurBeta = 1.67562724014337f;
         numSujet = "suj11_";
@@ -173,20 +174,20 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     /// <param name="timeStamp"></param>
     protected override void Process(float[] newSample, double timeStamp)
     {
+        Debug.Log("received");
         lastSample = newSample;
         currentBetaValue = lastSample[0];
         currentParasiteBetaValue = lastSample[1];
         int indiceStim = 2;
         if (modeDebug=="debug")
         {
-            Debug.Log("jgfjigf");
             Debug_texte.text = String.Format("target beta : {0} parasite beta : {1} marker : {2}",currentBetaValue.ToString(),currentParasiteBetaValue.ToString(),lastSample[indiceStim].ToString());
         }
         
         if (collecterValeursBeta)
         {
-            savingToutesValeursBeta.Add(currentBetaValue);
-            savingValeursBetaEssai.Add(currentBetaValue);
+            savingToutesValeursBeta.Add(currentParasiteBetaValue);//ATTENTION REMETTRE currentBetaValue
+            savingValeursBetaEssai.Add(currentParasiteBetaValue);//ATTENTION REMETTRE currentBetaValue
         }
         else
         {
@@ -409,6 +410,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
 
                     else if (stim == 800)//"OVTK_GDF_End_Of_Trial")
                     {
+                        currentState = "endTrial";
                         moyenneBlocNF += savingValeursVitesseEssai.Average();
                         main.SetActive(false);
                         saveDataTrial(false);//TO DO SAVE MESSAGE OBTENU ET MOYENNE BLOC ASSOCIEE
