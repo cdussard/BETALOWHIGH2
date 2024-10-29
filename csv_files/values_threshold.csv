@@ -1,2 +1,2 @@
-min,percentile5,percentile10,percentile25,percentile47,percentile50,percentile75,percentilePireBeta,percentileMeilleurBeta,max,stdev
-2.667,4.111800000000001,4.9084,6.599,9.265239999999999,9.663,14.759,8.6967,4.34835,83.385,10.121
+min,percentile5,percentile10,percentile25,percentile47,percentile50,percentile75,percentilePireBeta,percentileMeilleurBeta,max,stdev,percentilePireBeta_parasite,percentileMeilleurBeta_parasite
+2.667,4.1118,4.9084,6.599,9.26524,9.663,14.759,8.6967,4.34835,83.385,10.121,2.0,6.0
