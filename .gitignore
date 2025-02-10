@@ -1,0 +1,3 @@
+*.info
+*.config
+/unity_exe/sart_eeg_tcp_Data
