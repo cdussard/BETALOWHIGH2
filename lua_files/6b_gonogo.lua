@@ -18,13 +18,14 @@ function process(box)
 		-- start xp
 	box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0)
 	
-	t = t + 3
+	t = t + 2
 	box:send_stimulation(1, OVTK_StimulationId_LabelStart, t, 0)
 	
+	t = t +1
 	for i = 1,50 do
 		box:send_stimulation(1, OVTK_StimulationId_SegmentStop, t, 0)
 	
-		t = t +2
+		t = t + 2
 
 	end
 	
