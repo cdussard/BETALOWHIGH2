@@ -66,7 +66,7 @@
 		</Box>
 		<Box>
 			<Identifier>(0x00000af9, 0x00002889)</Identifier>
-			<Name>Laplacian Cz vert</Name>
+			<Name>Laplacian Cz JAUNE</Name>
 			<AlgorithmClassIdentifier>(0xdd332c6c, 0x195b4fd4)</AlgorithmClassIdentifier>
 			<Inputs>
 				<Input>
@@ -155,7 +155,7 @@
 		</Box>
 		<Box>
 			<Identifier>(0x00000af9, 0x0000288a)</Identifier>
-			<Name>Laplacian C3 vert</Name>
+			<Name>Laplacian C3 JAUNE</Name>
 			<AlgorithmClassIdentifier>(0xdd332c6c, 0x195b4fd4)</AlgorithmClassIdentifier>
 			<Inputs>
 				<Input>
@@ -243,6 +243,95 @@
 			</Attributes>
 		</Box>
 		<Box>
+			<Identifier>(0x00000af9, 0x0000288b)</Identifier>
+			<Name>Laplacian C3 JAUNE</Name>
+			<AlgorithmClassIdentifier>(0xdd332c6c, 0x195b4fd4)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Input Signal</Name>
+				</Input>
+			</Inputs>
+			<Outputs>
+				<Output>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Output Signal</Name>
+				</Output>
+			</Outputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x79a9edeb, 0x245d83fc)</TypeIdentifier>
+					<Name>Spatial Filter Coefficients</Name>
+					<DefaultValue>1;0;0;0;0;1;0;0;0;0;1;0;0;0;0;1</DefaultValue>
+					<Value>-1;-1;4;-1;-1</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x007deef9, 0x2f3e95c6)</TypeIdentifier>
+					<Name>Number of Output Channels</Name>
+					<DefaultValue>4</DefaultValue>
+					<Value>1</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x007deef9, 0x2f3e95c6)</TypeIdentifier>
+					<Name>Number of Input Channels</Name>
+					<DefaultValue>4</DefaultValue>
+					<Value>5</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
+					<Name>Filter matrix file</Name>
+					<DefaultValue></DefaultValue>
+					<Value></Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>224</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>848</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
+					<Value></Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0x81db9bf9, 0xf1cf4ed7)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x527ad68d, 0x16d746a0)</Identifier>
+					<Value></Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc46b3d00, 0x3e0454e1)</Identifier>
+					<Value>(0x00000000, 0x000c4e87)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc73e83ec, 0xf855c5bc)</Identifier>
+					<Value>false</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc80ce8af, 0xf699f813)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>4</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
 			<Identifier>(0x00000dc7, 0x00003860)</Identifier>
 			<Name>Display cue image</Name>
 			<AlgorithmClassIdentifier>(0x005789a4, 0x3ab78a36)</AlgorithmClassIdentifier>
@@ -284,7 +373,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Cue Image 1</Name>
 					<DefaultValue>${Path_Data}/plugins/simple-visualisation/p300-magic-card/01.png</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/images/cross.png</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/images/cross.png</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -299,7 +388,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>Cue Image 2</Name>
 					<DefaultValue>${Path_Data}/plugins/simple-visualization/p300-magic-card/02.png</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/images/ObserverF9E5D4.png</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/images/ObserverF9E5D4.png</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -314,7 +403,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>Cue Image 3</Name>
 					<DefaultValue>${Path_Data}/plugins/simple-visualization/p300-magic-card/03.png</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/images/Imiter.png</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/images/Imiter.png</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -329,7 +418,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>Cue Image 4</Name>
 					<DefaultValue>${Path_Data}/plugins/simple-visualization/p300-magic-card/04.png</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/images/Imaginer.png</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/images/Imaginer.png</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -344,7 +433,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>Cue Image 5</Name>
 					<DefaultValue>${Path_Data}/plugins/simple-visualization/p300-magic-card/05.png</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/images/remplir_questionnaire.png</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/images/remplir_questionnaire.png</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -359,7 +448,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>Cue Image 6</Name>
 					<DefaultValue>${Path_Data}/plugins/simple-visualization/p300-magic-card/06.png</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/images/temp_FB_performance.png</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/images/temp_FB_performance.png</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -420,7 +509,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue></DefaultValue>
-					<Value>C:/Users/claire.dussard/OneDrive - ICM/Bureau/exp_BETALOWHIGH/DATA_BETALOWHIGH2/FBmainSeule-[2021.05.06-11.35.53].ov</Value>
+					<Value>C:/Users/lilux/Desktop/Données/1_restingState_[2023.09.04-11.15.07].ov</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 			</Settings>
@@ -516,7 +605,7 @@
 					<TypeIdentifier>(0xb0d0db45, 0x49cbc34a)</TypeIdentifier>
 					<Name>Lua Script</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/lua_files/6_neurofeedback.lua</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/lua_files/6_neurofeedback.lua</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -650,7 +739,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../csv_files/NF1_rest_vert_high.csv</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/csv_files/NF1_rest_jaune_high.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -721,7 +810,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../csv_files/NF1_rest_vert_low.csv</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/csv_files/NF1_rest_jaune_low.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -792,7 +881,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../csv_files/NF1_vertC3_high.csv</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/csv_files/NF1_rest_jauneC3_high.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -820,11 +909,11 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>752</Value>
+					<Value>704</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>720</Value>
+					<Value>784</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
@@ -998,11 +1087,11 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>672</Value>
+					<Value>624</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>704</Value>
+					<Value>768</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
@@ -1020,7 +1109,7 @@
 		</Box>
 		<Box>
 			<Identifier>(0x00004e3d, 0x00005654)</Identifier>
-			<Name>FC1; FC2; Cz; CP2; CP1</Name>
+			<Name>C2; AFz; Cz; CPz; C1</Name>
 			<AlgorithmClassIdentifier>(0x361722e8, 0x311574e8)</AlgorithmClassIdentifier>
 			<Inputs>
 				<Input>
@@ -1039,7 +1128,7 @@
 					<TypeIdentifier>(0x79a9edeb, 0x245d83fc)</TypeIdentifier>
 					<Name>Channel List</Name>
 					<DefaultValue>:</DefaultValue>
-					<Value>FC1; FC2; Cz; CP2; CP1</Value>
+					<Value>C2; AFz; Cz; CPz; C1</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1102,7 +1191,7 @@
 		</Box>
 		<Box>
 			<Identifier>(0x00004e3d, 0x00005655)</Identifier>
-			<Name>FC5; CP1; C3; FC1; CP5</Name>
+			<Name>CP3; C5; C3; FC3; C1</Name>
 			<AlgorithmClassIdentifier>(0x361722e8, 0x311574e8)</AlgorithmClassIdentifier>
 			<Inputs>
 				<Input>
@@ -1121,7 +1210,7 @@
 					<TypeIdentifier>(0x79a9edeb, 0x245d83fc)</TypeIdentifier>
 					<Name>Channel List</Name>
 					<DefaultValue>:</DefaultValue>
-					<Value>FC5; CP1; C3; FC1; CP5</Value>
+					<Value>CP3; C5; C3; FC3; C1</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1147,6 +1236,88 @@
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
 					<Value>544</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
+					<Value></Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0x277826e1, 0xa30a3bd0)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x527ad68d, 0x16d746a0)</Identifier>
+					<Value></Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc46b3d00, 0x3e0454e1)</Identifier>
+					<Value>(0x00000000, 0x0007199a)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc73e83ec, 0xf855c5bc)</Identifier>
+					<Value>false</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc80ce8af, 0xf699f813)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>3</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
+			<Identifier>(0x00004e3d, 0x00005656)</Identifier>
+			<Name>CP3; C5; C3; FC3; C1</Name>
+			<AlgorithmClassIdentifier>(0x361722e8, 0x311574e8)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Input signal</Name>
+				</Input>
+			</Inputs>
+			<Outputs>
+				<Output>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Output signal</Name>
+				</Output>
+			</Outputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x79a9edeb, 0x245d83fc)</TypeIdentifier>
+					<Name>Channel List</Name>
+					<DefaultValue>:</DefaultValue>
+					<Value>CP3; C5; C3; FC3; C1</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x3bcf9e67, 0x0c23994d)</TypeIdentifier>
+					<Name>Action</Name>
+					<DefaultValue>Select</DefaultValue>
+					<Value>Select</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x666f25e9, 0x3e5738d6)</TypeIdentifier>
+					<Name>Channel Matching Method</Name>
+					<DefaultValue>Smart</DefaultValue>
+					<Value>Smart</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>160</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>800</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
@@ -1278,11 +1449,11 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>544</Value>
+					<Value>576</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>512</Value>
+					<Value>688</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
@@ -1346,11 +1517,11 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>592</Value>
+					<Value>576</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>704</Value>
+					<Value>944</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
@@ -1624,7 +1795,7 @@
 		</Box>
 		<Box>
 			<Identifier>(0x00007d5c, 0x0000640a)</Identifier>
-			<Name>13-20Hz</Name>
+			<Name>21-30Hz</Name>
 			<AlgorithmClassIdentifier>(0xb4f9d042, 0x9d79f2e5)</AlgorithmClassIdentifier>
 			<Inputs>
 				<Input>
@@ -1685,11 +1856,11 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>464</Value>
+					<Value>480</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>816</Value>
+					<Value>912</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
@@ -1828,6 +1999,65 @@
 			</Attributes>
 		</Box>
 		<Box>
+			<Identifier>(0x00007e10, 0x00007531)</Identifier>
+			<Name>1s epoch with 0.75s overlap</Name>
+			<AlgorithmClassIdentifier>(0x00777fa0, 0x5dc3f560)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Input signal</Name>
+				</Input>
+			</Inputs>
+			<Outputs>
+				<Output>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Epoched signal</Name>
+				</Output>
+			</Outputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x512a166f, 0x5c3ef83f)</TypeIdentifier>
+					<Name>Epoch duration (in sec)</Name>
+					<DefaultValue>1</DefaultValue>
+					<Value>1</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x512a166f, 0x5c3ef83f)</TypeIdentifier>
+					<Name>Epoch intervals (in sec)</Name>
+					<DefaultValue>0.5</DefaultValue>
+					<Value>0.25</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>336</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>848</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0xc5ff41e9, 0xccc59a01)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xc80ce8af, 0xf699f813)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>2</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
 			<Identifier>(0x24757b65, 0x29027b6f)</Identifier>
 			<Name>stopExperiment_recording</Name>
 			<AlgorithmClassIdentifier>(0x5f426dce, 0x08456e13)</AlgorithmClassIdentifier>
@@ -1927,6 +2157,17 @@
 			</Target>
 		</Link>
 		<Link>
+			<Identifier>(0x00000b05, 0x00006ef7)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00004e3d, 0x00005656)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00000af9, 0x0000288b)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
 			<Identifier>(0x000010c1, 0x00001f60)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x00007e10, 0x0000752f)</BoxIdentifier>
@@ -1934,6 +2175,17 @@
 			</Source>
 			<Target>
 				<BoxIdentifier>(0x00007d5c, 0x00006409)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x000010c1, 0x00001f61)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00007e10, 0x00007531)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00007d5c, 0x0000640a)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
@@ -1949,13 +2201,13 @@
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x00001eda, 0x000052c4)</Identifier>
+			<Identifier>(0x000013d2, 0x00007dc6)</Identifier>
 			<Source>
-				<BoxIdentifier>(0x0000619a, 0x00007f4d)</BoxIdentifier>
+				<BoxIdentifier>(0x00004163, 0x0000588b)</BoxIdentifier>
 				<BoxOutputIndex>0</BoxOutputIndex>
 			</Source>
 			<Target>
-				<BoxIdentifier>(0x00004163, 0x0000588b)</BoxIdentifier>
+				<BoxIdentifier>(0x0000396f, 0x00004e99)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
@@ -1967,6 +2219,17 @@
 			</Source>
 			<Target>
 				<BoxIdentifier>(0x00007e10, 0x0000752f)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x00001fb8, 0x00004e2e)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00000af9, 0x0000288b)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00007e10, 0x00007531)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
@@ -2070,14 +2333,14 @@
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x00004bb9, 0x000063be)</Identifier>
+			<Identifier>(0x00004ba0, 0x000052fe)</Identifier>
 			<Source>
-				<BoxIdentifier>(0x00007d5c, 0x0000640a)</BoxIdentifier>
+				<BoxIdentifier>(0x00003826, 0x00004f23)</BoxIdentifier>
 				<BoxOutputIndex>0</BoxOutputIndex>
 			</Source>
 			<Target>
-				<BoxIdentifier>(0x0000619a, 0x00007f4d)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
+				<BoxIdentifier>(0x0000396f, 0x00004e99)</BoxIdentifier>
+				<BoxInputIndex>1</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
@@ -2103,28 +2366,6 @@
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x000063eb, 0x00007130)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x00007d5c, 0x00006409)</BoxIdentifier>
-				<BoxOutputIndex>0</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00007d5c, 0x0000640a)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x0000678a, 0x000072dc)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x00004163, 0x0000588b)</BoxIdentifier>
-				<BoxOutputIndex>0</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x0000396f, 0x00004e99)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
 			<Identifier>(0x00006baf, 0x0000052d)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x00003826, 0x00004f23)</BoxIdentifier>
@@ -2133,6 +2374,17 @@
 			<Target>
 				<BoxIdentifier>(0x0000396f, 0x00004e97)</BoxIdentifier>
 				<BoxInputIndex>1</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x0000714a, 0x00007ff5)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x0000203a, 0x000057f1)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00004e3d, 0x00005656)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
@@ -2147,6 +2399,17 @@
 			</Target>
 		</Link>
 		<Link>
+			<Identifier>(0x00007656, 0x0000048c)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x0000619a, 0x00007f4d)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00004163, 0x0000588b)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
 			<Identifier>(0x00007fa1, 0x00000413)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x00007d5c, 0x00006409)</BoxIdentifier>
@@ -2154,6 +2417,17 @@
 			</Source>
 			<Target>
 				<BoxIdentifier>(0x0000619a, 0x00007f4c)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x00007fa1, 0x00000414)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00007d5c, 0x0000640a)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x0000619a, 0x00007f4d)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
