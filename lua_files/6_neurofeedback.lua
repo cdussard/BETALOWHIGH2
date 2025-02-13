@@ -61,12 +61,12 @@ function process(box)
             t = t + math.random(breakPostTrial_min_duration, breakPostTrial_max_duration)
             box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
         end
-        t = t + 1
-        box:send_stimulation(1, OVTK_StimulationId_Label_1E, t, 0) --instruction questionnaire , pause entre les blocs
-        t = t + inter_block_duration --1 min
-        box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
+        --t = t + 1
+        --box:send_stimulation(1, OVTK_StimulationId_Label_1E, t, 0) --instruction questionnaire , pause entre les blocs
+       -- t = t + inter_block_duration --1 min
+       -- box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
 
-        t = t + 1
+       -- t = t + 1
 
     end
     t = t + 1 -- voir s'il y a une latence de fermeture du .exe

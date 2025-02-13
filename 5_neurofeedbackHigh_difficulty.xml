@@ -429,7 +429,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/6_neurofeedback_[$core{date}].ov</Value>
+					<Value>C:/Users/lilux/Desktop/BETALOWHIGH2/rawdata/openvibe/6_neurofeedback_[$core{date}].ov</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -662,7 +662,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>nb of blocks</Name>
 					<DefaultValue>9</DefaultValue>
-					<Value>3</Value>
+					<Value>1</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>

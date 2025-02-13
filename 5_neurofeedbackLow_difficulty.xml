@@ -662,7 +662,7 @@
 					<TypeIdentifier>(0xffffffff, 0xffffffff)</TypeIdentifier>
 					<Name>nb of blocks</Name>
 					<DefaultValue>9</DefaultValue>
-					<Value>3</Value>
+					<Value>1</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
