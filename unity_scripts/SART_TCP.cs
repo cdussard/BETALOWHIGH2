@@ -53,6 +53,7 @@ public class SART_TCP : MonoBehaviour
 
     public string m_Path;
     //string path = @"..\..\csv_files\";//@".\..\..\csv_files\";//trois si build deux sinon //@"..\..\csv_files\"
+    int noGoFileToRead;
     StreamWriter writer;
     public StreamWriter writer_stim;
 
@@ -62,9 +63,21 @@ public class SART_TCP : MonoBehaviour
         Debug.Log("awake sart");
         m_Path = script.m_Path;
         Debug.Log(m_Path);
-        writer = new StreamWriter(m_Path + "save_log_sujet.csv");//fix le path
+        string filePath = m_Path + "save_log_sujet.csv";
+        Debug.Log(filePath);
+        // Vérifier si le fichier existe, ouvrir en append s'il existe, sinon le créer
+        if (File.Exists(filePath))
+        {
+            writer = new StreamWriter(filePath, true); // Append mode
+            Debug.Log("Appending to existing file.");
+        }
+        else
+        {
+            writer = new StreamWriter(filePath, false); // Création du fichier
+            Debug.Log("Creating new file.");
+        }
+
         writer_stim = script.writer_stim;
-        
 
 
         // load ISIs, characters
@@ -264,9 +277,20 @@ public class SART_TCP : MonoBehaviour
 
     void readCharacterList()
     {
-        // deduire nb essais et runs 
+        string filePath = m_Path+"filenogotoread.txt";
+        if (File.Exists(filePath))
+        {
+            string content = File.ReadAllText(filePath);
+            if (int.TryParse(content, out int result))
+            {
+                noGoFileToRead = result;
+            }
+        }
+        Debug.Log("reading nogo sequence");
+        // deduire nb e
+        // essais et runs 
         //var reader = new StreamReader(File.OpenRead(m_Path + @path + "sequenceV2_sujet.csv"));
-        var reader = new StreamReader(File.OpenRead(m_Path + "sequenceV2_sujet.csv"));
+        var reader = new StreamReader(File.OpenRead(m_Path + "sequenceV2_"+noGoFileToRead.ToString()+".csv"));
         string headerLine = reader.ReadLine();
         string line;
 
@@ -297,6 +321,14 @@ public class SART_TCP : MonoBehaviour
             nbEssais = int.Parse(values[3], CultureInfo.InvariantCulture); // le num du dernier trial est le nb max de trials
             nbRuns = int.Parse(values[2], CultureInfo.InvariantCulture);// le num du dernier run est le nb max de runs
         }
+
+                // Increment the value
+        noGoFileToRead++;
+
+        // Write the updated value back to the file
+        File.WriteAllText(filePath, noGoFileToRead.ToString());
+
+        Console.WriteLine("Updated value: " + noGoFileToRead);
 
     }
 

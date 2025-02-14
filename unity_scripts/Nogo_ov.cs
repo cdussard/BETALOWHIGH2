@@ -24,10 +24,10 @@ public class Nogo_ov : AFloatInlet
 
     // gestion paths//
     public string m_Path;
-    string path_editor = @"..\..\csv_files\";
+    string path_editor = @"..\..\..\..\csv_files\";
     string path_build = @"..\..\..\csv_files\";
 
-    float[] lastSample; //new float [2] ??
+    float[] lastSample; 
     public float currentBetaValue = -1.0f;
     public float currentParasiteBetaValue = -1.0f;
     int currentStim = 0;
@@ -52,7 +52,6 @@ public class Nogo_ov : AFloatInlet
         customCulture.NumberFormat.NumberDecimalSeparator = ".";
 
         System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
-        Debug.Log("WESH");
         Debug.Log(m_Path);
         definePath();
         Debug.Log(m_Path);
@@ -91,7 +90,6 @@ public class Nogo_ov : AFloatInlet
 
                     }
 
-                    //if (stim == ) LOAD NF??
                 }
 
 
