@@ -1,3 +1,10 @@
 *.info
 *.config
 /unity_exe/sart_eeg_tcp_Data
+/unity_scripts/BETALOWHIGH2/Assets
+/unity_scripts/BETALOWHIGH2/Library
+/unity_scripts/BETALOWHIGH2/ProjectSettings
+/unity_scripts/BETALOWHIGH2/UserSettings
+/unity_scripts/BETALOWHIGH2/Packages
+/unity_scripts/BETALOWHIGH2/MonoBleedingEdge
+/unity_scripts/BETALOWHIGH2/Logs

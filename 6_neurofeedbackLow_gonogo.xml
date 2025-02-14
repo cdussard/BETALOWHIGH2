@@ -450,6 +450,10 @@
 					<Value>528</Value>
 				</Attribute>
 				<Attribute>
+					<Identifier>(0x341d3912, 0x1478de86)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+				<Attribute>
 					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
 					<Value>(0x89a08108, 0xc8d1fac1)</Value>
 				</Attribute>
@@ -638,7 +642,7 @@
 					<TypeIdentifier>(0xb0d0db45, 0x49cbc34a)</TypeIdentifier>
 					<Name>Lua Script</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/lua_files/6_neurofeedback.lua</Value>
+					<Value>${__volatile_ScenarioDir}/lua_files/6_neurofeedbackGonoGo.lua</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
