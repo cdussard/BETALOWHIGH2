@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 using Assets.LSL4Unity.Scripts.AbstractInlets;
 using Assets.LSL4Unity.Scripts;
 using Assets.LSL4Unity.Scripts.Examples;
 using System.IO;
+using UnityEngine.EventSystems;
 using System.Globalization;
 using UnityEngine.UI;
 using System.Text;
 using TMPro;
 
+
 public class neurofeedbackBETALOWHIGH2 : AFloatInlet
 {
+    private float switchTime = 5f; // Switch every 5 seconds
+    private float timerde = 0f;
+    private bool isOtherAppActive = false;
+
+    // switch entre les scenes
+    public WindowManager script_windowManager;
 
     // gestion du neurofeedback
     //seuils 
@@ -21,9 +30,9 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     string path_editor = @"..\..\..\..\csv_files\";
     string path_build = @"..\..\..\csv_files\";
     public float seuilPireBeta = 10.417f;
-    public float seuilMeilleurBeta =3.9141f;
-    float seuilPireBeta_parasite = 0.05f;
-    float seuilMeilleurBeta_parasite = 0.02f;
+    public float seuilMeilleurBeta = 3.9141f;
+    public float seuilPireBeta_parasite = 0.05f;
+    public float seuilMeilleurBeta_parasite = 0.02f;
     public string numSujet = "suj6_";
     public string numSession = "ses01_";
     float slope;
@@ -90,6 +99,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     public GameObject circleDebug;
     public GameObject Chronometre;
     //public Text questionnaire_test_text;
+    string nomGonoGo = "6_noGO_tcp_v1";
     List<GameObject> listeGOquestionnaire = new List<GameObject>();
     List<GameObject> listeGOSliders = new List<GameObject>();
     List<GameObject> listeGoAgreeDisagree = new List<GameObject>();
@@ -167,6 +177,8 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
         saveDataTrial(true);
         saveDataQuestionnaireBloc(true);
         FeedbackPerformance =  GO_feedbackPerf.GetComponent<Text>();
+        script_windowManager.MinimizeApp(nomGonoGo);
+        Debug.Log("MINNNNNNNNNNNNNNNNNN");
     }
 
 
@@ -203,6 +215,12 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
                 Debug.Log("marker" + stim.ToString());
                 try
                 {  //currentStim = dictStim[stim]; //Debug.Log(currentStim);
+
+                if (stim == 33024)//OVTK_StimulationId_LabelStart
+                {
+                    Debug.Log("MAXEEEEEEEEEEEEEEEEEEEEEEE");
+                    script_windowManager.MaximizeApp(nomGonoGo);
+                }
                     if (stim == 32779)//currentStim == "OVTK_StimulationId_VisualStimulationStart"
                     {
                         currentState = "croix";
@@ -284,45 +302,10 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
                     }
                     else if (stim == 33054)//currentStim =="OVTK_StimulationId_Label_1E"
                     {
-                        currentState = "questionnaire";
-                        Debug.Log(currentState);
-                        foreach (GameObject GO in listeGOquestionnaire.GetRange(0, listeGOquestionnaire.Count - 2))
-                        {
-                            GO.SetActive(true);
-                        }
-                        foreach (GameObject GO in listeGOSliders.GetRange(0,listeGOSliders.Count - 1))
-                        {
-                            GO.SetActive(true);
-                        }
-                        foreach(GameObject GO in listeGoAgreeDisagree.GetRange(0,listeGoAgreeDisagree.Count-2))
-                        {
-                            GO.SetActive(true);
-                        }
-                        if (yokedOrNF=="NF")
-                        {
-                            listeGOquestionnaire[listeGOquestionnaire.Count - 1].SetActive(true);
-                            listeGOquestionnaire[listeGOquestionnaire.Count - 2].SetActive(true);
-                            listeGOSliders[listeGOSliders.Count-1].SetActive(true);
-                            //activer agree disagree nf : ça marche pas
-                            listeGoAgreeDisagree[listeGoAgreeDisagree.Count-1].SetActive(true);
-                            listeGoAgreeDisagree[listeGoAgreeDisagree.Count-2].SetActive(true);
-                            GO_inputText.SetActive(true);
-                        }
-                        Chronometre.SetActive(true);
-                        Debug.Log("activated chrono");
-                        remainingTime = tempsPourQuestionnaire;
-                        if (langueInstructions=="FR")
-                        {
-                            Chronometre.GetComponent<Text>().text = "Temps restant: " + remainingTime.ToString("F2") + " s";
-                        }
-                        else if (langueInstructions=="EN")
-                        {
-                            Chronometre.GetComponent<Text>().text = "Remaining time: " + remainingTime.ToString("F2") + " s";
-                        }
-                        
-
+                     script_windowManager.MinimizeApp(nomGonoGo);
+                     Debug.Log("MINNNNNNNNNNNNNNNNNN");
                     }
-                    else if (stim == 33055)//currentStim == "OVTK_StimulationId_Label_1F"
+                    /*else if (stim == 33055)//currentStim == "OVTK_StimulationId_Label_1F"
                     {
                         moyenneBlocNF = moyenneBlocNF/trialEnCoursDansBloc;
                         int moyTemp = (int)Math.Round(100*(moyenneBlocNF/vitesseMainMaxMovement));//pour convertir en pourcentage en utilisant val vitesse
@@ -374,7 +357,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
                         currentState = "feedbackPerformance";
                         Debug.Log(currentState);
 
-                    }
+                    }*/
                     else if (stim == 33036)//currentStim == "OVTK_StimulationId_Label_0C" : debut bloc NF
                     {
                         moyenneBlocNF = 0;// remet a 0 la moyenne des valeurs beta du bloc NF
@@ -545,7 +528,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     } 
 
     // Update is called once per frame
-    void Update()
+   void Update()
     {
   
         if (currentState=="questionnaire")
@@ -571,6 +554,8 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
         }
 
     }
+
+
 
 
     private void definePath()
@@ -703,11 +688,21 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     }
     private void LireConfig()
     {
-        
-        var reader = new StreamReader(File.OpenRead(m_Path + "config_neurofeedback.csv"));
-        Debug.Log(m_Path + "config_neurofeedback.csv");
-        var headerLine = reader.ReadLine();
+        Debug.Log(m_Path + "values_threshold.csv");
+        var reader = new StreamReader(File.OpenRead(m_Path + "values_threshold.csv"));
+        string headerLine = reader.ReadLine();
         string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            var values = line.Split(',');
+            seuilPireBeta = float.Parse(values[7], CultureInfo.InvariantCulture);
+            seuilMeilleurBeta = float.Parse(values[8], CultureInfo.InvariantCulture);
+            seuilPireBeta_parasite = float.Parse(values[11], CultureInfo.InvariantCulture);
+            seuilMeilleurBeta_parasite = float.Parse(values[12], CultureInfo.InvariantCulture);
+
+        }
+        reader = new StreamReader(File.OpenRead(m_Path + "config_neurofeedback.csv"));
+        headerLine = reader.ReadLine();
         while ((line = reader.ReadLine()) != null)
         {
             var values = line.Split(',');
