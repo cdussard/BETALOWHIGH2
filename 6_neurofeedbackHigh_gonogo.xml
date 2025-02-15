@@ -638,7 +638,7 @@
 					<TypeIdentifier>(0xb0d0db45, 0x49cbc34a)</TypeIdentifier>
 					<Name>Lua Script</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/lua_files/6_neurofeedback.lua</Value>
+					<Value>${__volatile_ScenarioDir}/lua_files/6_neurofeedbackGonoGo.lua</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
