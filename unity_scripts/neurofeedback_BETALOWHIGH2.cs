@@ -37,9 +37,6 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     public string numSession = "ses01_";
     float slope;
     float intercept;
-    public float slope_parasite;
-    public float intercept_parasite;
-    public float opaciteMax = 0.66f;
     // samples
     float[] lastSample = new float[2];
     public float currentBetaValue = -1.0f;
@@ -134,11 +131,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     void Awake()
     {
         Debug.Log("awake");
-        opaciteMax = 1.0f;
-        seuilPireBeta = 4.02150537634409f;
-        seuilMeilleurBeta = 1.67562724014337f;
-        numSujet = "suj11_";
-        numSession = "ses02_";
+        ReadSujetSession();
         dictStim = CreateDictStim();
         for (int i = 0; i < nbCycles; i++)
         {
@@ -156,8 +149,8 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
         if (langueInstructions=="FR")
         {
             PausePostTrial.GetComponent<Text>().text = "Vous pouvez bouger !";
-            GO_agree_originel.GetComponent<Text>().text = "Totalement d'accord";
-            GO_disagree_originel.GetComponent<Text>().text = "Pas du tout d'accord";
+            //GO_agree_originel.GetComponent<Text>().text = "Totalement d'accord";
+            //GO_disagree_originel.GetComponent<Text>().text = "Pas du tout d'accord";
             
         }
         else if (langueInstructions=="EN")
@@ -166,16 +159,16 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
             Transform canvasTransform = GameObject.Find("Canvas").transform;
             Imaginer = canvasTransform.Find("imagine_en")?.gameObject;
             Observer = canvasTransform.Find("observer_en")?.gameObject;
-            GO_agree_originel.GetComponent<Text>().text = "Completely agree";
-            GO_disagree_originel.GetComponent<Text>().text = "Completely disagree";
+            //GO_agree_originel.GetComponent<Text>().text = "Completely agree";
+            //GO_disagree_originel.GetComponent<Text>().text = "Completely disagree";
         }
         ComputeRegression();
-        LireQuestionnaires();
+        //LireQuestionnaires();
         Debug.Log(m_Path + numSujet+numSession+"save_valeursBeta_nonTargetUsed2.csv");
         writerBeta = new StreamWriter(m_Path + numSujet+numSession+"save_valeursBeta_nonTargetUsed2.csv");
         writerQuestionnaire = new StreamWriter(m_Path + "save_questionnaires.csv");
         saveDataTrial(true);
-        saveDataQuestionnaireBloc(true);
+        //saveDataQuestionnaireBloc(true);
         FeedbackPerformance =  GO_feedbackPerf.GetComponent<Text>();
         script_windowManager.MinimizeApp(nomGonoGo);
         Debug.Log("MINNNNNNNNNNNNNNNNNN");
@@ -254,38 +247,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
                         Croix.SetActive(false);
                         main.SetActive(false);
                         Imaginer.SetActive(false);
-                        Observer.SetActive(false);
-                        if (currentState == "questionnaire")
-                        {
-                            Debug.Log("doing quest deactivation");
-                            foreach (GameObject GO in listeGOquestionnaire)
-                            {
-                                GO.SetActive(false);
-                            }
-                            foreach(GameObject GO in listeGoAgreeDisagree)
-                            {
-                                GO.SetActive(false);
-                            }
-
-                            for (int i = 0; i < listeGOSliders.Count(); i++)
-                            {
-                                    listeGOSliders[i].SetActive(false);
-                                    valueSlidersArray[i] = listeGOSliders[i].GetComponent<Slider>().value;
-                                    listeGOSliders[i].GetComponent<Slider>().value = 0.0f;//remettre a 0 les sliders
-                            }
-        
-                            GO_inputText.SetActive(false);
-                            Debug.Log("done with deactivation");
-                            valueStratégie = GO_inputText.GetComponent<TMP_InputField>().text;
-                            
-                            GO_inputText.GetComponent<TMP_InputField>().text = "";// remettre a 0 le texte
-                            saveDataQuestionnaireBloc(false);
-                            Chronometre.SetActive(false);
-                            timer = 0.0f;//remettre timer a 0
-                            remainingTime = tempsPourQuestionnaire;
-                        }
-                        
-    
+                        Observer.SetActive(false);   
                         GO_feedbackPerf.SetActive(false);
                         PausePostTrial.SetActive(false);
                         currentState = "none";
@@ -531,7 +493,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
    void Update()
     {
   
-        if (currentState=="questionnaire")
+        /*if (currentState=="questionnaire")
         {
             if (timer<tempsPourQuestionnaire)
             {
@@ -551,7 +513,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
             }
 
         
-        }
+        }*/
 
     }
 
@@ -574,6 +536,189 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
         #endif
     }
 
+    private void LireConfig()
+    {
+        Debug.Log(m_Path + "values_threshold.csv");
+        var reader = new StreamReader(File.OpenRead(m_Path + "values_threshold.csv"));
+        string headerLine = reader.ReadLine();
+        string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            var values = line.Split(',');
+            seuilPireBeta = float.Parse(values[7], CultureInfo.InvariantCulture);
+            seuilMeilleurBeta = float.Parse(values[8], CultureInfo.InvariantCulture);
+            seuilPireBeta_parasite = float.Parse(values[11], CultureInfo.InvariantCulture);
+            seuilMeilleurBeta_parasite = float.Parse(values[12], CultureInfo.InvariantCulture);
+
+        }
+        reader = new StreamReader(File.OpenRead(m_Path + "config_neurofeedback.csv"));
+        headerLine = reader.ReadLine();
+        while ((line = reader.ReadLine()) != null)
+        {
+            var values = line.Split(',');
+            perfNulSeuil = int.Parse(values[2], CultureInfo.InvariantCulture);
+            perfBadSeuil = int.Parse(values[3], CultureInfo.InvariantCulture);
+            perfMoySeuil = int.Parse(values[4], CultureInfo.InvariantCulture);
+            vitesseMainMaxMovement = float.Parse(values[5], CultureInfo.InvariantCulture);
+            tempsPourQuestionnaire = int.Parse(values[6], CultureInfo.InvariantCulture);
+            langueInstructions = (string)values[7];
+            modeDebug = (string)values[8];
+        }
+    }
+
+    private void ReinitialiserVariables()
+    {
+        Debug.Log("reinitialising environment variables");
+        lastSample = new float[2];
+        listeBoolFeedbacksEffectues = new List<bool>();
+        savingValeursBetaEssai = new List<float>();
+        savingValeursVitesseEssai = new List<float>();
+        savingValeursBetaMoyenneEssai = new List<float>();
+        currentStim = String.Empty;
+        currentBetaValue = 1.0f;
+
+        for (int i = 0; i < nbCycles; i++)
+        {
+            listeBoolFeedbacksEffectues.Add(false);
+        }
+        cycleEnCours = 0;
+        collecterValeursBeta = false;
+
+    }
+
+    IEnumerator ResetHands()
+    {
+        Debug.Log("reset hand start");
+        yield return new WaitForSeconds(waitTime);
+        animHuman.SetTrigger("ToRest");
+        animHuman.speed = 1.0f;
+    }
+
+    private float getAmplitudeYoked()
+    {
+        if (yokedOrNF == "YOKED")
+        {
+            current_speed = vitesseMainMaxMovement * (listeGlobaleYoked[blocYokedEnCours-1][trialEnCoursDansBloc-1][cycleEnCours]/100);//ATTENTION BLOC -1 et trial -1 (ils commencent a 1 mais liste indexee a 0)
+        }
+        return current_speed;
+    }
+
+    private void ComputeRegression()
+    {
+        slope = (0.0f - vitesseMainMaxMovement) / (seuilPireBeta - seuilMeilleurBeta);
+        intercept = -slope * seuilPireBeta;
+
+   }
+
+    private void changeVitesseNF()
+    {
+        listeBoolFeedbacksEffectues[cycleEnCours] = true;
+        indiceStartSlice = listeIndicesStartMoyennage[cycleEnCours];
+        moyenneBetaEnCours = savingValeursBetaEssai.GetRange(indiceStartSlice, longueurMoyennage).Average();
+        Debug.Log("moyenne beta : " + moyenneBetaEnCours);
+        savingValeursBetaMoyenneEssai.Add(moyenneBetaEnCours);
+        if(moyenneBetaEnCours>=seuilPireBeta)
+        {
+            Debug.Log("Beta too high : not moving");
+            current_speed = 0.0f;
+        }
+
+        else if (moyenneBetaEnCours<= seuilMeilleurBeta)
+        {
+            Debug.Log("Perfect beta : moving at max speed");
+            current_speed = vitesseMainMaxMovement;
+        }
+
+        else
+        {
+            Debug.Log("Beta in the good range : moving at linear speed");
+            current_speed = intercept + (moyenneBetaEnCours * slope);
+        }
+        Debug.Log("current speed : " + current_speed.ToString());
+        triggerMovement();      
+
+    }
+
+    private void changeVitesseYoked()
+    {
+        listeBoolFeedbacksEffectues[cycleEnCours] = true;
+        indiceStartSlice = listeIndicesStartMoyennage[cycleEnCours];
+        moyenneBetaEnCours = savingValeursBetaEssai.GetRange(indiceStartSlice, longueurMoyennage).Average();
+        Debug.Log("moyenne beta : " + moyenneBetaEnCours);
+        savingValeursBetaMoyenneEssai.Add(moyenneBetaEnCours);
+        //DEFINE CURRENT SPEED with amplitude
+        current_speed = getAmplitudeYoked();
+        if (current_speed >vitesseMainMaxMovement)
+        {
+            current_speed = vitesseMainMaxMovement;
+        }
+        else if (current_speed < 0.0f)
+        {
+            current_speed = 0.0f;
+        }
+        triggerMovement();
+
+    }
+
+    private void triggerMovement()
+    {
+        animHuman.speed = current_speed;
+        StartCoroutine(ResetHands());
+        animHuman.SetTrigger("ToStateRight");
+        cycleEnCours += 1;
+        savingToutesValeursVitesse.Add(current_speed);
+        savingValeursVitesseEssai.Add(current_speed);
+        if (cycleEnCours == nbCycles)
+        {
+            collecterValeursBeta = false;
+        }
+
+    }
+
+      private List<List<List<float>>> genererListeAmplitudeYokedFB_V2(int nbBlocsYoked, int nbCycles, List<int> listeMoyennes,List<List<List<float>>> listeGlobaleYoked,float tolerance)
+    {
+
+        for (int i = 0 ; i < nbBlocsYoked; i++)
+        {
+            List<List<float>> liste_bloc_i = new List<List<float>>();
+
+            for (int j = 0 ; j< nbEssaisYoked ; j++)
+            {
+                List<float> liste_essai_j = new List<float>();
+                float sum = 0;
+ 
+                for (int k = 0; k < nbCycles; k++)
+                {
+                        // Generate a random value between 0 and 100
+                        float value = UnityEngine.Random.Range(0f, 100f);
+                        liste_essai_j.Add(value);
+                        sum += value;
+                }
+  
+    
+                while (Mathf.Abs((sum / nbCycles) - listeMoyennes[j]) > tolerance)
+                {
+                    float currentMean = sum / nbCycles;
+                    float adjustment = listeMoyennes[j]  - currentMean;
+
+                    for (int l = 0; l < nbCycles; l++)
+                    {
+                        liste_essai_j[l] += adjustment;
+                    }
+
+                    sum = liste_essai_j.Sum();
+                }
+
+                liste_bloc_i.Add(liste_essai_j);
+ 
+             }
+             listeGlobaleYoked.Add(liste_bloc_i);
+        }
+        
+        return listeGlobaleYoked;
+    }               
+
+     /*
     private GameObject setRightCoordinates(GameObject GO,int i,string nature)
     {
         RectTransform rectTransform = GO.GetComponent<RectTransform>();
@@ -686,193 +831,19 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
         }
         valueSlidersArray = new float[listeQuestions.Count()-1];
     }
-    private void LireConfig()
+*/
+void ReadSujetSession()
+{
+    string filePath = "infos_sujet_session.txt";
+    if (File.Exists(filePath))
     {
-        Debug.Log(m_Path + "values_threshold.csv");
-        var reader = new StreamReader(File.OpenRead(m_Path + "values_threshold.csv"));
-        string headerLine = reader.ReadLine();
-        string line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            var values = line.Split(',');
-            seuilPireBeta = float.Parse(values[7], CultureInfo.InvariantCulture);
-            seuilMeilleurBeta = float.Parse(values[8], CultureInfo.InvariantCulture);
-            seuilPireBeta_parasite = float.Parse(values[11], CultureInfo.InvariantCulture);
-            seuilMeilleurBeta_parasite = float.Parse(values[12], CultureInfo.InvariantCulture);
+        string[] lines = File.ReadAllLines(filePath);
+        int numSujet = int.Parse(lines[0].Split(':')[1]);
+        int numSession = int.Parse(lines[1].Split(':')[1]);
 
-        }
-        reader = new StreamReader(File.OpenRead(m_Path + "config_neurofeedback.csv"));
-        headerLine = reader.ReadLine();
-        while ((line = reader.ReadLine()) != null)
-        {
-            var values = line.Split(',');
-            perfNulSeuil = int.Parse(values[2], CultureInfo.InvariantCulture);
-            perfBadSeuil = int.Parse(values[3], CultureInfo.InvariantCulture);
-            perfMoySeuil = int.Parse(values[4], CultureInfo.InvariantCulture);
-            vitesseMainMaxMovement = float.Parse(values[5], CultureInfo.InvariantCulture);
-            tempsPourQuestionnaire = int.Parse(values[6], CultureInfo.InvariantCulture);
-            langueInstructions = (string)values[7];
-            modeDebug = (string)values[8];
-        }
+        Console.WriteLine($"numSujet: {numSujet}, numSession: {numSession}");
     }
-
-    private void ReinitialiserVariables()
-    {
-        Debug.Log("reinitialising environment variables");
-        lastSample = new float[2];
-        listeBoolFeedbacksEffectues = new List<bool>();
-        savingValeursBetaEssai = new List<float>();
-        savingValeursVitesseEssai = new List<float>();
-        savingValeursBetaMoyenneEssai = new List<float>();
-        currentStim = String.Empty;
-        currentBetaValue = 1.0f;
-
-        for (int i = 0; i < nbCycles; i++)
-        {
-            listeBoolFeedbacksEffectues.Add(false);
-        }
-        cycleEnCours = 0;
-        collecterValeursBeta = false;
-
-    }
-
-    IEnumerator ResetHands()
-    {
-        Debug.Log("reset hand start");
-        yield return new WaitForSeconds(waitTime);
-        animHuman.SetTrigger("ToRest");
-        animHuman.speed = 1.0f;
-    }
-
-    private float getAmplitudeYoked()
-    {
-        if (yokedOrNF == "YOKED")
-        {
-            current_speed = vitesseMainMaxMovement * (listeGlobaleYoked[blocYokedEnCours-1][trialEnCoursDansBloc-1][cycleEnCours]/100);//ATTENTION BLOC -1 et trial -1 (ils commencent a 1 mais liste indexee a 0)
-        }
-        return current_speed;
-    }
-
-    private void ComputeRegression()
-    {
-        slope = (0.0f - vitesseMainMaxMovement) / (seuilPireBeta - seuilMeilleurBeta);
-        intercept = -slope * seuilPireBeta;
-
-        slope_parasite = (opaciteMax) / (seuilPireBeta_parasite - seuilMeilleurBeta_parasite);
-        intercept_parasite = -slope_parasite * seuilMeilleurBeta_parasite;
-
-    }
-
-    private void changeVitesseNF()
-    {
-        listeBoolFeedbacksEffectues[cycleEnCours] = true;
-        indiceStartSlice = listeIndicesStartMoyennage[cycleEnCours];
-        moyenneBetaEnCours = savingValeursBetaEssai.GetRange(indiceStartSlice, longueurMoyennage).Average();
-        Debug.Log("moyenne beta : " + moyenneBetaEnCours);
-        savingValeursBetaMoyenneEssai.Add(moyenneBetaEnCours);
-        if(moyenneBetaEnCours>=seuilPireBeta)
-        {
-            Debug.Log("Beta too high : not moving");
-            current_speed = 0.0f;
-        }
-
-        else if (moyenneBetaEnCours<= seuilMeilleurBeta)
-        {
-            Debug.Log("Perfect beta : moving at max speed");
-            current_speed = vitesseMainMaxMovement;
-        }
-
-        else
-        {
-            Debug.Log("Beta in the good range : moving at linear speed");
-            current_speed = intercept + (moyenneBetaEnCours * slope);
-        }
-        Debug.Log("current speed : " + current_speed.ToString());
-        triggerMovement();      
-
-    }
-
-    private void changeVitesseYoked()
-    {
-        listeBoolFeedbacksEffectues[cycleEnCours] = true;
-        indiceStartSlice = listeIndicesStartMoyennage[cycleEnCours];
-        moyenneBetaEnCours = savingValeursBetaEssai.GetRange(indiceStartSlice, longueurMoyennage).Average();
-        Debug.Log("moyenne beta : " + moyenneBetaEnCours);
-        savingValeursBetaMoyenneEssai.Add(moyenneBetaEnCours);
-        //DEFINE CURRENT SPEED with amplitude
-        current_speed = getAmplitudeYoked();
-        if (current_speed >vitesseMainMaxMovement)
-        {
-            current_speed = vitesseMainMaxMovement;
-        }
-        else if (current_speed < 0.0f)
-        {
-            current_speed = 0.0f;
-        }
-        triggerMovement();
-
-    }
-
-    private void triggerMovement()
-    {
-        animHuman.speed = current_speed;
-        StartCoroutine(ResetHands());
-        animHuman.SetTrigger("ToStateRight");
-        cycleEnCours += 1;
-        savingToutesValeursVitesse.Add(current_speed);
-        savingValeursVitesseEssai.Add(current_speed);
-        if (cycleEnCours == nbCycles)
-        {
-            collecterValeursBeta = false;
-        }
-
-    }
-
-      private List<List<List<float>>> genererListeAmplitudeYokedFB_V2(int nbBlocsYoked, int nbCycles, List<int> listeMoyennes,List<List<List<float>>> listeGlobaleYoked,float tolerance)
-    {
-
-        for (int i = 0 ; i < nbBlocsYoked; i++)
-        {
-            List<List<float>> liste_bloc_i = new List<List<float>>();
-
-            for (int j = 0 ; j< nbEssaisYoked ; j++)
-            {
-                List<float> liste_essai_j = new List<float>();
-                float sum = 0;
- 
-                for (int k = 0; k < nbCycles; k++)
-                {
-                        // Generate a random value between 0 and 100
-                        float value = UnityEngine.Random.Range(0f, 100f);
-                        liste_essai_j.Add(value);
-                        sum += value;
-                }
-  
-    
-                while (Mathf.Abs((sum / nbCycles) - listeMoyennes[j]) > tolerance)
-                {
-                    float currentMean = sum / nbCycles;
-                    float adjustment = listeMoyennes[j]  - currentMean;
-
-                    for (int l = 0; l < nbCycles; l++)
-                    {
-                        liste_essai_j[l] += adjustment;
-                    }
-
-                    sum = liste_essai_j.Sum();
-                }
-
-                liste_bloc_i.Add(liste_essai_j);
- 
-             }
-             listeGlobaleYoked.Add(liste_bloc_i);
-        }
-        
-        return listeGlobaleYoked;
-    }               
-
-     
-
+}
     private Dictionary<int, string> CreateDictStim()
     {
         Dictionary<int, string> dict = new Dictionary<int, string>();

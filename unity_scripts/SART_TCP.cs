@@ -7,7 +7,6 @@ using System.IO;
 using System.Globalization;
 using UnityEngine.Serialization;
 using System.Net.Sockets;
-
 public class SART_TCP : MonoBehaviour
 {
 
@@ -54,6 +53,8 @@ public class SART_TCP : MonoBehaviour
     public string m_Path;
     //string path = @"..\..\csv_files\";//@".\..\..\csv_files\";//trois si build deux sinon //@"..\..\csv_files\"
     int noGoFileToRead;
+    int numSujet;
+    int numSession;
     StreamWriter writer;
     public StreamWriter writer_stim;
 
@@ -81,7 +82,9 @@ public class SART_TCP : MonoBehaviour
 
 
         // load ISIs, characters
+        ReadSujetSession();
         readCharacterList();
+
         assignConsignes();
         rand = new System.Random();
     }
@@ -275,9 +278,23 @@ public class SART_TCP : MonoBehaviour
 
     }
 
+void ReadSujetSession()
+{
+    Debug.Log("reading sujet session");
+    string filePath = Path.Combine(m_Path, "infos_sujet_session.txt");
+    if (File.Exists(filePath))
+    {
+        string[] lines = File.ReadAllLines(filePath);
+        numSujet = int.Parse(lines[0].Split(':')[1]);
+        numSession = int.Parse(lines[1].Split(':')[1]);
+
+        Console.WriteLine($"numSujet: {numSujet}, numSession: {numSession}");
+    }
+}
+
     void readCharacterList()
     {
-        string filePath = m_Path+"filenogotoread.txt";
+        string filePath = Path.Combine(m_Path, "filenogotoread.txt");
         if (File.Exists(filePath))
         {
             string content = File.ReadAllText(filePath);
@@ -287,10 +304,10 @@ public class SART_TCP : MonoBehaviour
             }
         }
         Debug.Log("reading nogo sequence");
-        // deduire nb e
-        // essais et runs 
-        //var reader = new StreamReader(File.OpenRead(m_Path + @path + "sequenceV2_sujet.csv"));
-        var reader = new StreamReader(File.OpenRead(m_Path + "sequenceV2_"+noGoFileToRead.ToString()+".csv"));
+        // deduire nb essais et runs 
+
+        string filePathSuj = Path.Combine(m_Path, $"../gonogo_sequences/sequence_{noGoFileToRead}_sujet_{numSujet}_session_{numSession}.csv");
+        var reader = new StreamReader(filePathSuj);
         string headerLine = reader.ReadLine();
         string line;
 
