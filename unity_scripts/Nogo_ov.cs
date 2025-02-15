@@ -38,7 +38,7 @@ public class Nogo_ov : AFloatInlet
     public GameObject controller;
 
     public bool openVibeStarted = false;
-
+    public int runEnCours = 0;
 
     public StreamWriter writer_stim;
     // gestion du neurofeedback
@@ -65,8 +65,8 @@ public class Nogo_ov : AFloatInlet
     /// <param name="timeStamp"></param>
     protected override void Process(float[] newSample, double timeStamp)
     {
-
-        Debug.Log("process");
+        Debug.Log(newSample.Count());
+        //Debug.Log("process");
         lastSample = newSample;
         currentBetaValue = lastSample[0];
 
@@ -74,6 +74,7 @@ public class Nogo_ov : AFloatInlet
         if (lastSample[1] != 0)
         {
             int stim = (int)lastSample[indiceStim];
+            
             if ((lastSample[indiceStim] - stim) == 0)
             {
                 Debug.Log("marker" + stim.ToString());
@@ -81,6 +82,7 @@ public class Nogo_ov : AFloatInlet
                 {
                     if (stim == 33024)//Label_00 
                     {
+                        runEnCours ++;
                         Debug.Log("WRITING DEBUT");
                         SendStimulation(0, 0, 0);
                         timeStart = DateTime.Now;
@@ -88,6 +90,11 @@ public class Nogo_ov : AFloatInlet
                         openVibeStarted = true;
 
 
+                    }
+
+                    if (stim == 33054)
+                    {
+                        openVibeStarted = false;
                     }
 
                 }

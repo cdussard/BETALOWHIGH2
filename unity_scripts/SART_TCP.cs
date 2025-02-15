@@ -28,8 +28,8 @@ public class SART_TCP : MonoBehaviour
     public TMPro.TextMeshProUGUI displayNumber;
     public TMPro.TextMeshProUGUI displayConsignes;
     private string charToDisplay;
-    public int nbEssais = -1;
-    public int nbRuns = -1;
+    public int nbEssais;
+    int nbRuns = 2; // EN DUR 
     public int numEssai = 0;
     public int numRun = 0;
     public int moyenneISI = 1;
@@ -101,7 +101,6 @@ public class SART_TCP : MonoBehaviour
 
         yield return StartCoroutine(DoWholeSart());
 
-
     }
 
 
@@ -121,39 +120,35 @@ public class SART_TCP : MonoBehaviour
         ls_diffTemps.Add(0);
         ls_stim.Add("start");
 
-        // Display instructions
-        displayConsignes.text = listeConsignes[0];
-        yield return new WaitForSeconds(4f);
+        // Display instructions prendre en compte timing
         displayConsignes.text = listeConsignes[1];
-        yield return new WaitForSeconds(4f);
-        displayConsignes.text = listeConsignes[2];
         yield return new WaitForSeconds(3f);
-        displayConsignes.text = listeConsignes[3];
-        yield return new WaitForSeconds(3f);
+        //chrono a l'écran puis envoie ?
         displayConsignes.text = "";
 
-        // Run task
-        for (int j = 0; j < nbRuns; j++)
+        Debug.Log("nb runs"+nbRuns.ToString());
+        for (int i = 1; i <= nbRuns; i++) // Corrected loop syntax
         {
-            numRun = j + 1;
+            Debug.Log("RUN"+i.ToString());
             numEssai = 0;
-            yield return StartCoroutine(SartTask(j + 1));
+            yield return StartCoroutine(SartTask(numRun));
             Debug.Log("Run end.");
             writeDataLog();
             script.saveStims(false, ls_diffTemps, ls_stim);
 
             // Pause between runs
-            displayConsignes.text = listeConsignes[4];
-            endTask = true;
-            yield return new WaitForSeconds(10f);
+            /*displayConsignes.text = listeConsignes[4];*/
+            /*yield return new WaitForSeconds(10f);
             displayConsignes.text = "";
+        
+
+            displayConsignes.text = listeConsignes[5];*/
         }
 
-        displayConsignes.text = listeConsignes[5];
     }
 
     //https://gamedevbeginner.com/how-to-use-fixed-update-in-unity/#:~:text=The%20rate%20at%20which%20Fixed,of%2050%20frames%20per%20second. ==> modifie fixed timestep a 0.001
-    void FixedUpdate()
+    void FixedUpdate()// si on ne recoit pas les spacebar pas de panique : dans le build modifier le fixedupdate refresh rate
     {
         if (!endTask)
         {
@@ -164,6 +159,7 @@ public class SART_TCP : MonoBehaviour
 
             // 
             {
+                Debug.Log("pressed");
                 spacebarPressed = true;
 
                 DateTime spaceBar = DateTime.Now;
@@ -200,11 +196,13 @@ public class SART_TCP : MonoBehaviour
     void Update()
     {
         openVibeStarted = script.openVibeStarted;
+        numRun = script.runEnCours;
         if (!endTask)
 
         {
             if (spacebarPressed && Input.GetKeyUp(KeyCode.Space)) // Reset the spacebarPressed flag when spacebar is released
             {
+                Debug.Log("releasing space");
                 spacebarPressed = false;
             }
             if (askedToDisplay)
@@ -304,15 +302,19 @@ void ReadSujetSession()
             }
         }
         Debug.Log("reading nogo sequence");
-        // deduire nb essais et runs 
+        string filePathSuj = Path.GetFullPath(Path.Combine(m_Path, "..", "gonogo_sequences", 
+                      $"sequence_{noGoFileToRead}_sujet_{numSujet}_session_{numSession}.csv"));
 
-        string filePathSuj = Path.Combine(m_Path, $"../gonogo_sequences/sequence_{noGoFileToRead}_sujet_{numSujet}_session_{numSession}.csv");
+
+        Debug.Log($"File path: {filePathSuj}");
+
         var reader = new StreamReader(filePathSuj);
         string headerLine = reader.ReadLine();
         string line;
 
         while ((line = reader.ReadLine()) != null)
         {
+            Debug.Log("reading");
             var values = line.Split(',');
             if (values[0] != "num_sujet")
             {
@@ -336,11 +338,17 @@ void ReadSujetSession()
             num_sujet = int.Parse(values[0], CultureInfo.InvariantCulture);
             num_session = int.Parse(values[1], CultureInfo.InvariantCulture);
             nbEssais = int.Parse(values[3], CultureInfo.InvariantCulture); // le num du dernier trial est le nb max de trials
-            nbRuns = int.Parse(values[2], CultureInfo.InvariantCulture);// le num du dernier run est le nb max de runs
         }
 
                 // Increment the value
-        noGoFileToRead++;
+        if (noGoFileToRead<10)
+        {
+            noGoFileToRead++;
+        }
+        else 
+        {
+            noGoFileToRead = 1;
+        }
 
         // Write the updated value back to the file
         File.WriteAllText(filePath, noGoFileToRead.ToString());
@@ -357,7 +365,8 @@ void ReadSujetSession()
         if (numRun == 1)
         {
             Debug.Log("writing title :)");
-            line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}", "symbol", "ISI", "SpacebarPressTime", "displayTime", "num_essai", "num_run", "isNoGo", "askedToDisplayTime", "isAffichage", "displayDuration", "SpacebarRT");
+            line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", "symbol", "ISI", "SpacebarPressTime", "displayTime", "num_essai", "num_run",
+             "isNoGo", "askedToDisplayTime", "isAffichage", "displayDuration", "SpacebarRT","num_sujet","num_session");
             writer.WriteLine(line);
             writer.Flush();
         }
@@ -366,7 +375,7 @@ void ReadSujetSession()
         foreach (var entry in logEntries)
         {
             Debug.Log("writing entries");
-            line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}",
+            line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}",
             entry.Symbol.ToString(),
             entry.ISI.ToString("F6", CultureInfo.InvariantCulture),
             entry.SpacebarPressTime.ToString("F6", CultureInfo.InvariantCulture),
@@ -377,7 +386,10 @@ void ReadSujetSession()
             entry.askedToDisplayTime.ToString("F6", CultureInfo.InvariantCulture),
             entry.isAffichage.ToString(),
             entry.displayDuration.ToString("F6", CultureInfo.InvariantCulture),
-            entry.SpacebarRT.ToString("F6", CultureInfo.InvariantCulture));
+            entry.SpacebarRT.ToString("F6", CultureInfo.InvariantCulture),
+            entry.num_sujet.ToString("F6", CultureInfo.InvariantCulture),
+            entry.num_session.ToString("F6", CultureInfo.InvariantCulture)
+            );
             writer.WriteLine(line);
             writer.Flush();
 
@@ -390,6 +402,12 @@ void ReadSujetSession()
 
     IEnumerator SartTask(int numRun)
     {
+        while (!openVibeStarted)
+        {
+            openVibeStarted = script.openVibeStarted;
+            //Debug.Log("Waiting for openVibe to start...");
+            yield return null; // Wait for the next frame and check again
+        }
         endTask = false;
         for (int i = 0; i < nbEssais; i++)
         {
@@ -406,6 +424,8 @@ void ReadSujetSession()
         yield return new WaitForSeconds(1f);
         endTask = true;
         Debug.Log("end sart");
+        openVibeStarted = false;
+        script.openVibeStarted = false;
     }
 
 
