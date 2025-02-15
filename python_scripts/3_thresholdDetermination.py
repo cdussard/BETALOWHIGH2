@@ -17,6 +17,8 @@ rel_path = "../csv_files/"
 csv_filename = os.path.join(path, '5_tableau_moyennes.csv')
 tableau_echantillons = pd.read_csv(csv_filename)
 
+#IL FAUT AUSSI LIRE LES VALEURS DU BETA PARASITE
+
 #lire les parametres a calculer
 path_instructions = os.path.join(path, "config_neurofeedback.csv")
 instructions = pd.read_csv(path_instructions)
@@ -38,6 +40,9 @@ percentile_50 = np.percentile(echantillons,50)
 percentile_75 = np.percentile(echantillons,75)
 percentile_pireBeta = np.percentile(echantillons,percentilePireBeta)
 percentile_meilleurBeta = np.percentile(echantillons,percentileMeilleurBeta)
+percentile_pireBetaParasite = #COMPLETER avec les valeurs du beta parasite (tableur ecrit par l'openvibe threshold)
+percentileMeilleurBeta_parasite = #COMPLETER 
+
 max_val = echantillons.max()
 
 stdev = round(np.std(echantillons),3)
@@ -54,7 +59,9 @@ dict_threshold = {
     'percentilePireBeta': percentile_pireBeta,
     'percentileMeilleurBeta': percentile_meilleurBeta,
     'max': max_val,
-    'stdev': stdev        
+    'stdev': stdev ,
+    'percentilePireBeta_parasite': percentile_pireBetaParasite,
+    'percentileMeilleurBeta_parasite': percentileMeilleurBeta_parasite       
                   
                   }
 
