@@ -30,18 +30,17 @@ numeric = False
 #     df_NF = generate_full_seq(n_runs,n_trials,tolerance,minNoGoNumberPerRun,maxNoGoNumberPerRun,minDuration,maxDuration,noGoCharacter,i+1,2)
 #     df_NF.to_csv("csv_files/sequenceV2_sujet"+str(i+1)+".csv",index=False)
     
-
-for num_sujet in range(1,21):
-    for session in range(1,3):
+for session in range(1,3):
+    for num_sujet in range(1,21):
         df_NF,seq_nf = generate_full_seq(n_runs,n_trials,tolerance,minNoGoNumberPerRun,maxNoGoNumberPerRun,minDuration,maxDuration,noGoCharacter,num_sujet,session)
         df_OBS,seq_obs = generate_full_seq(n_runs,n_trials,tolerance,minNoGoNumberPerRun,maxNoGoNumberPerRun,minDuration,maxDuration,noGoCharacter,num_sujet,session)
         
         for i in range(n_runs):
-            df_NF = df_NF[df_NF["run"] == i + 1].copy()
-            df_NF["type"] = "NF"
-            df_OBS = df_OBS[df_OBS["run"] == i + 1].copy()
-            df_OBS["type"] = "OBS"
-            df_run_i = pd.concat([df_NF, df_OBS], ignore_index=True)
+            df_NF_run = df_NF[df_NF["run"] == i + 1].copy()
+            df_NF_run["type"] = "NF"
+            df_OBS_run = df_OBS[df_OBS["run"] == i + 1].copy()
+            df_OBS_run["type"] = "OBS"
+            df_run_i = pd.concat([df_NF_run, df_OBS_run], ignore_index=True)
             df_run_i.to_csv(f"../gonogo_sequences/sequence_{i+1}_sujet_{num_sujet}_session_{session}.csv", index=False)
     
 
