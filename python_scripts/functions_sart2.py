@@ -110,5 +110,6 @@ def generate_full_seq(n_runs,n_trials,tolerance,minNoGoNumberPerRun,maxNoGoNumbe
         for (charac,duration) in zip(liste_sequences[i],liste_duration[i]):
             data.append([numSujet,numSession,i+1,j+1,charac,charac==noGoCharacter, duration])
             j = j + 1
-    df = pd.DataFrame(data, columns=['num_sujet','num_session','run','trial', 'character', 'isNoGo','duration'])    
-    return df
+    df = pd.DataFrame(data, columns=['num_sujet','num_session','run','trial', 'character', 'isNoGo','duration']) 
+    seq_full = ["".join(sublist) for sublist in liste_sequences]
+    return df,seq_full
