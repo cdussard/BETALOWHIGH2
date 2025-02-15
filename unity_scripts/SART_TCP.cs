@@ -67,15 +67,16 @@ public class SART_TCP : MonoBehaviour
         string filePath = m_Path + "save_log_sujet.csv";
         Debug.Log(filePath);
         // Vérifier si le fichier existe, ouvrir en append s'il existe, sinon le créer
-        if (File.Exists(filePath))
+        if (!File.Exists(filePath))
         {
-            writer = new StreamWriter(filePath, true); // Append mode
-            Debug.Log("Appending to existing file.");
+            using (StreamWriter writer = new StreamWriter(filePath, false)) // Mode création
+            {
+                Debug.Log("Creating new file.");
+            }
         }
         else
         {
-            writer = new StreamWriter(filePath, false); // Création du fichier
-            Debug.Log("Creating new file.");
+            Debug.Log("File already exists.");
         }
 
         writer_stim = script.writer_stim;
@@ -126,10 +127,10 @@ public class SART_TCP : MonoBehaviour
         //chrono a l'écran puis envoie ?
         displayConsignes.text = "";
 
-        Debug.Log("nb runs"+nbRuns.ToString());
+        Debug.Log("nb runs" + nbRuns.ToString());
         for (int i = 1; i <= nbRuns; i++) // Corrected loop syntax
         {
-            Debug.Log("RUN"+i.ToString());
+            Debug.Log("RUN" + i.ToString());
             numEssai = 0;
             yield return StartCoroutine(SartTask(numRun));
             Debug.Log("Run end.");
@@ -171,7 +172,7 @@ public class SART_TCP : MonoBehaviour
                     num_sujet = num_sujet,
                     num_session = num_session,
                     numEssai = numEssai,
-                    numRun = numRun,
+                    numSequence = noGoFileToRead,
                     Symbol = charToDisplay,
                     displayTime = displayTime,
                     ISI = duration,
@@ -228,7 +229,7 @@ public class SART_TCP : MonoBehaviour
                     SpacebarPressTime = -1,
                     ISI = duration,
                     numEssai = numEssai,
-                    numRun = numRun,
+                    numSequence = noGoFileToRead,
                     isNoGo = isNoGo,
                     isAffichage = true,
                     displayDuration = displayDuration,
@@ -276,19 +277,19 @@ public class SART_TCP : MonoBehaviour
 
     }
 
-void ReadSujetSession()
-{
-    Debug.Log("reading sujet session");
-    string filePath = Path.Combine(m_Path, "infos_sujet_session.txt");
-    if (File.Exists(filePath))
+    void ReadSujetSession()
     {
-        string[] lines = File.ReadAllLines(filePath);
-        numSujet = int.Parse(lines[0].Split(':')[1]);
-        numSession = int.Parse(lines[1].Split(':')[1]);
+        Debug.Log("reading sujet session");
+        string filePath = Path.Combine(m_Path, "infos_sujet_session.txt");
+        if (File.Exists(filePath))
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            numSujet = int.Parse(lines[0].Split(':')[1]);
+            numSession = int.Parse(lines[1].Split(':')[1]);
 
-        Console.WriteLine($"numSujet: {numSujet}, numSession: {numSession}");
+            Console.WriteLine($"numSujet: {numSujet}, numSession: {numSession}");
+        }
     }
-}
 
     void readCharacterList()
     {
@@ -302,7 +303,7 @@ void ReadSujetSession()
             }
         }
         Debug.Log("reading nogo sequence");
-        string filePathSuj = Path.GetFullPath(Path.Combine(m_Path, "..", "gonogo_sequences", 
+        string filePathSuj = Path.GetFullPath(Path.Combine(m_Path, "..", "gonogo_sequences",
                       $"sequence_{noGoFileToRead}_sujet_{numSujet}_session_{numSession}.csv"));
 
 
@@ -339,21 +340,21 @@ void ReadSujetSession()
             num_session = int.Parse(values[1], CultureInfo.InvariantCulture);
             nbEssais = int.Parse(values[3], CultureInfo.InvariantCulture); // le num du dernier trial est le nb max de trials
         }
-
-                // Increment the value
-        if (noGoFileToRead<10)
+        int newFileToRead = noGoFileToRead;
+        // Increment the value
+        if (noGoFileToRead < 10)
         {
-            noGoFileToRead++;
+            newFileToRead++;
         }
-        else 
+        else
         {
-            noGoFileToRead = 1;
+            newFileToRead = 1;
         }
 
         // Write the updated value back to the file
-        File.WriteAllText(filePath, noGoFileToRead.ToString());
+        File.WriteAllText(filePath, newFileToRead.ToString());
 
-        Console.WriteLine("Updated value: " + noGoFileToRead);
+        Console.WriteLine("Updated value: " + newFileToRead);
 
     }
 
@@ -361,40 +362,61 @@ void ReadSujetSession()
     {
         Debug.Log("writing");
         var line = "";
-
+        int lineCount = 0;
+        string filePath = m_Path + "save_log_sujet.csv";
+        string type_trial;
         if (numRun == 1)
         {
-            Debug.Log("writing title :)");
-            line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", "symbol", "ISI", "SpacebarPressTime", "displayTime", "num_essai", "num_run",
-             "isNoGo", "askedToDisplayTime", "isAffichage", "displayDuration", "SpacebarRT","num_sujet","num_session");
-            writer.WriteLine(line);
-            writer.Flush();
+            type_trial = "NF";
+        }
+        else
+        {   
+            type_trial = "OBS";
         }
 
-
-        foreach (var entry in logEntries)
+        if (File.Exists(filePath))
         {
-            Debug.Log("writing entries");
-            line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}",
-            entry.Symbol.ToString(),
-            entry.ISI.ToString("F6", CultureInfo.InvariantCulture),
-            entry.SpacebarPressTime.ToString("F6", CultureInfo.InvariantCulture),
-            entry.displayTime.ToString("F6", CultureInfo.InvariantCulture),
-            entry.numEssai.ToString("F0", CultureInfo.InvariantCulture),
-            entry.numRun.ToString("F0", CultureInfo.InvariantCulture),
-            entry.isNoGo.ToString(),
-            entry.askedToDisplayTime.ToString("F6", CultureInfo.InvariantCulture),
-            entry.isAffichage.ToString(),
-            entry.displayDuration.ToString("F6", CultureInfo.InvariantCulture),
-            entry.SpacebarRT.ToString("F6", CultureInfo.InvariantCulture),
-            entry.num_sujet.ToString("F6", CultureInfo.InvariantCulture),
-            entry.num_session.ToString("F6", CultureInfo.InvariantCulture)
-            );
-            writer.WriteLine(line);
-            writer.Flush();
-
+            lineCount = File.ReadAllLines(filePath).Length;
         }
-        logEntries.Clear();
+        
+        using (StreamWriter writer = new StreamWriter(filePath, true))
+        {
+
+            if (numRun == 1 && lineCount < 2)
+            {
+                Debug.Log("writing title :)");
+                line = "symbol,ISI,SpacebarPressTime,displayTime,num_essai,num_sequence,isNoGo,askedToDisplayTime,isAffichage,displayDuration,SpacebarRT,num_sujet,num_session, type_trial";
+                writer.WriteLine(line);
+                writer.Flush();
+            }
+
+     
+            foreach (var entry in logEntries)
+            {
+                Debug.Log("writing entries");
+                line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13}",
+                entry.Symbol.ToString(),
+                entry.ISI.ToString("F6", CultureInfo.InvariantCulture),
+                entry.SpacebarPressTime.ToString("F6", CultureInfo.InvariantCulture),
+                entry.displayTime.ToString("F6", CultureInfo.InvariantCulture),
+                entry.numEssai.ToString("F0", CultureInfo.InvariantCulture),
+                entry.numSequence.ToString("F0", CultureInfo.InvariantCulture),
+                entry.isNoGo.ToString(),
+                entry.askedToDisplayTime.ToString("F6", CultureInfo.InvariantCulture),
+                entry.isAffichage.ToString(),
+                entry.displayDuration.ToString("F6", CultureInfo.InvariantCulture),
+                entry.SpacebarRT.ToString("F6", CultureInfo.InvariantCulture),
+                entry.num_sujet.ToString("F6", CultureInfo.InvariantCulture),
+                entry.num_session.ToString("F6", CultureInfo.InvariantCulture),
+                type_trial
+                );
+                writer.WriteLine(line);
+                writer.Flush();
+
+            }
+
+            logEntries.Clear();
+    }
     }
 
 
@@ -466,7 +488,7 @@ void ReadSujetSession()
         public float displayTime;
         public float askedToDisplayTime;
         public int numEssai;
-        public int numRun;
+        public int numSequence;
         public bool isNoGo;
         public bool isAffichage;
         public float displayDuration;
