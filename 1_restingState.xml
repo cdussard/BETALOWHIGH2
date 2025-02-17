@@ -191,7 +191,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/1_restingState_[$core{date}].ov</Value>
+					<Value>${__volatile_ScenarioDir}/rawdata/openvibe/1_restingState_[$core{date}].ov</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -248,7 +248,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Header filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].vhdr</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/1_restingState.vhdr</Value>
+					<Value>${__volatile_ScenarioDir}/rawdata/openvibe/1_restingState.vhdr</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
