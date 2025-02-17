@@ -99,7 +99,7 @@
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>864</Value>
+					<Value>928</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
@@ -181,7 +181,7 @@
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>768</Value>
+					<Value>800</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x30a4e5c9, 0x83502953)</Identifier>
@@ -282,7 +282,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Header filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].vhdr</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../rawdata/gonog.vhdr</Value>
+					<Value>${__volatile_ScenarioDir}/rawdata/gonog.vhdr</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>

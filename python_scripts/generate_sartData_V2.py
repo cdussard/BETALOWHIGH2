@@ -13,7 +13,7 @@ import pandas as pd
 
 from functions_sart2 import generate_full_seq
 
-n_runs = 10
+n_runs = 1
 n_trials = 60
 minNoGoNumberPerRun = 10
 maxNoGoNumberPerRun = 20
@@ -41,7 +41,7 @@ for session in range(1,3):
             df_OBS_run = df_OBS[df_OBS["run"] == i + 1].copy()
             df_OBS_run["type"] = "OBS"
             df_run_i = pd.concat([df_NF_run, df_OBS_run], ignore_index=True)
-            df_run_i.to_csv(f"../gonogo_sequences/sequence_{i+1}_sujet_{num_sujet}_session_{session}.csv", index=False)
+            df_run_i.to_csv(fr"C:\Users\lilux\Desktop\BETALOWHIGH2\rawdata/gonogo_sequences/sequence_{i+1}_sujet_{num_sujet}_session_{session}.csv", index=False)
     
 
 
