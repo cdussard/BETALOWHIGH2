@@ -82,7 +82,7 @@
 					<TypeIdentifier>(0x79a9edeb, 0x245d83fc)</TypeIdentifier>
 					<Name>Command 1</Name>
 					<DefaultValue></DefaultValue>
-					<Value>"C:/Users/brainamp/AppData/Local/Programs/Python/Python311/python.exe" "${__volatile_ScenarioDir}/python_scripts/5_thresholdDetermination.py
+					<Value>"C:/Users/brainamp/AppData/Local/Programs/Python/Python311/python.exe" "${__volatile_ScenarioDir}/python_scripts/3_thresholdDetermination.py
 </Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
@@ -898,7 +898,7 @@
 					<TypeIdentifier>(0xb0d0db45, 0x49cbc34a)</TypeIdentifier>
 					<Name>Lua Script</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/lua_files/5_thresholdDetermination.lua</Value>
+					<Value>${__volatile_ScenarioDir}/lua_files/3_thresholdDetermination.lua</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -2353,7 +2353,23 @@
 			</Target>
 		</Link>
 	</Links>
-	<Comments></Comments>
+	<Comments>
+		<Comment>
+			<Identifier>(0x00000dd7, 0x000025c2)</Identifier>
+			<Text>&lt;== noms des tableurs en sortie pas homogenes + 
+modifier le fichier python qui les lit avec les bons noms de tableurs</Text>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x473d9a43, 0x97fc0a97)</Identifier>
+					<Value>1200</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x7234b86b, 0x2b8651a5)</Identifier>
+					<Value>672</Value>
+				</Attribute>
+			</Attributes>
+		</Comment>
+	</Comments>
 	<Metadata>
 		<Entry>
 			<Identifier>(0x0000200d, 0x00005cb3)</Identifier>
