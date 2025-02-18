@@ -551,7 +551,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/3_thresholdDetermination_[$core{date}].ov</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/3_thresholdDetermination_high_[$core{date}].ov</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -586,6 +586,59 @@
 				<Attribute>
 					<Identifier>(0xfba64161, 0x65304e21)</Identifier>
 					<Value></Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
+			<Identifier>(0x00002159, 0x00007de0)</Identifier>
+			<Name>BrainVision Format file writer (Gipsa)</Name>
+			<AlgorithmClassIdentifier>(0x0c7e0bde, 0x4ec90f95)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Streamed matrix</Name>
+				</Input>
+				<Input>
+					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
+					<Name>Input stimulation channel</Name>
+				</Input>
+			</Inputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
+					<Name>Header filename</Name>
+					<DefaultValue>record-[$core{date}-$core{time}].vhdr</DefaultValue>
+					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/3_thresholdDetermination_high_[$core{date}].vhdr</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x567234c5, 0x3d870dc3)</TypeIdentifier>
+					<Name>Binary format</Name>
+					<DefaultValue>INT_16</DefaultValue>
+					<Value>INT_16</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>-48</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>448</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0x995801be, 0x5faed712)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>2</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>2</Value>
 				</Attribute>
 			</Attributes>
 		</Box>
@@ -1244,7 +1297,7 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>-16</Value>
+					<Value>0</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
@@ -2003,6 +2056,17 @@
 			</Target>
 		</Link>
 		<Link>
+			<Identifier>(0x0000108b, 0x00006375)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00005831, 0x00002b13)</BoxIdentifier>
+				<BoxOutputIndex>1</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00002159, 0x00007de0)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
 			<Identifier>(0x000015bf, 0x0000732f)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x000024ad, 0x000012f3)</BoxIdentifier>
@@ -2032,6 +2096,17 @@
 			</Source>
 			<Target>
 				<BoxIdentifier>(0x0000362a, 0x000079e7)</BoxIdentifier>
+				<BoxInputIndex>1</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x00001c33, 0x000032a6)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00003826, 0x00004f23)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00002159, 0x00007de0)</BoxIdentifier>
 				<BoxInputIndex>1</BoxInputIndex>
 			</Target>
 		</Link>
@@ -2278,37 +2353,7 @@
 			</Target>
 		</Link>
 	</Links>
-	<Comments>
-		<Comment>
-			<Identifier>(0x00000dd7, 0x000025c1)</Identifier>
-			<Text>&lt;== ça ne peut pas fonctionner, les stims ne sont pas branchees sur les boites</Text>
-			<Attributes>
-				<Attribute>
-					<Identifier>(0x473d9a43, 0x97fc0a97)</Identifier>
-					<Value>1152</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0x7234b86b, 0x2b8651a5)</Identifier>
-					<Value>272</Value>
-				</Attribute>
-			</Attributes>
-		</Comment>
-		<Comment>
-			<Identifier>(0x00000dd7, 0x000025c2)</Identifier>
-			<Text>&lt;== noms des tableurs en sortie pas homogenes + 
-modifier le fichier python qui les lit avec les bons noms de tableurs</Text>
-			<Attributes>
-				<Attribute>
-					<Identifier>(0x473d9a43, 0x97fc0a97)</Identifier>
-					<Value>1200</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0x7234b86b, 0x2b8651a5)</Identifier>
-					<Value>672</Value>
-				</Attribute>
-			</Attributes>
-		</Comment>
-	</Comments>
+	<Comments></Comments>
 	<Metadata>
 		<Entry>
 			<Identifier>(0x0000200d, 0x00005cb3)</Identifier>

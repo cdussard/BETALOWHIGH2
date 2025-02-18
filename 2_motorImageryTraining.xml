@@ -305,6 +305,59 @@
 			</Attributes>
 		</Box>
 		<Box>
+			<Identifier>(0x00002159, 0x00007de0)</Identifier>
+			<Name>BrainVision Format file writer (Gipsa)</Name>
+			<AlgorithmClassIdentifier>(0x0c7e0bde, 0x4ec90f95)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Streamed matrix</Name>
+				</Input>
+				<Input>
+					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
+					<Name>Input stimulation channel</Name>
+				</Input>
+			</Inputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
+					<Name>Header filename</Name>
+					<DefaultValue>record-[$core{date}-$core{time}].vhdr</DefaultValue>
+					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/2_motorImageryTraining_[$core{date}].vhdr</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x567234c5, 0x3d870dc3)</TypeIdentifier>
+					<Name>Binary format</Name>
+					<DefaultValue>INT_16</DefaultValue>
+					<Value>INT_16</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>0</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>272</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0x995801be, 0x5faed712)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>2</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>2</Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
 			<Identifier>(0x00002bbb, 0x000035d4)</Identifier>
 			<Name>Stimulation listener</Name>
 			<AlgorithmClassIdentifier>(0x65731e1d, 0x47de5276)</AlgorithmClassIdentifier>
@@ -3999,6 +4052,17 @@
 			</Target>
 		</Link>
 		<Link>
+			<Identifier>(0x0000561c, 0x00006a1f)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x0000465a, 0x00004dbf)</BoxIdentifier>
+				<BoxOutputIndex>1</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00002159, 0x00007de0)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
 			<Identifier>(0x000057e9, 0x000038e2)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x0000465a, 0x00004dbf)</BoxIdentifier>
@@ -4172,6 +4236,17 @@
 			<Target>
 				<BoxIdentifier>(0x00007847, 0x000050ea)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x00007210, 0x00005a23)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00007a62, 0x00007a92)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00002159, 0x00007de0)</BoxIdentifier>
+				<BoxInputIndex>1</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
