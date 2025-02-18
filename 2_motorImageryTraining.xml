@@ -266,7 +266,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/openvibe/2_motorImageryTraining_[$core{date}].ov</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/2_motorImageryTraining_[$core{date}].ov</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1589,7 +1589,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/csv_files/obs_low.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/obs_low.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1660,7 +1660,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/csv_files/obs_high.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/obs_high.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1731,7 +1731,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/csv_files/exec_low.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/exec_low.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1802,7 +1802,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/csv_files/exec_high.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/exec_high.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1873,7 +1873,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/csv_files/MI_low.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/MI_low.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1944,7 +1944,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/csv_files/MI_high.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/MI_high.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
