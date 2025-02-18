@@ -1,0 +1,2 @@
+min,percentile5,percentile10,percentile25,percentile47,percentile50,percentile75,percentilePireBeta,percentileMeilleurBeta,max,stdev,percentilePireBeta_parasite,percentileMeilleurBeta_parasite
+0.224,0.4164,0.431,0.476,0.52612,0.535,0.649,0.649,0.535,1.259,0.164,7.74,7.642

@@ -551,7 +551,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue></DefaultValue>
-					<Value>${__volatile_ScenarioDir}/rawdata/openvibe/5_thresholdDetermination_[$core{date}].ov</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/3_thresholdDetermination_[$core{date}].ov</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1283,7 +1283,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/csv_files/rest_parasite.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/rest_parasite.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1354,7 +1354,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].csv</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/csv_files/rest_target.csv</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/csv_files/rest_target.csv</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>

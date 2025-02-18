@@ -8,27 +8,24 @@ import pandas as pd
 import numpy as np
 import os
 
-#path = "C:\manips\BETALOWHIGH\developpement_pilote/csv_files/"
-path = "C:/Users/lilux/desktop/BETALOWHIGH2/csv_files/"
-sep = ","
 print(os.getcwd())
-rel_path = "../csv_files/"
 
-#csv_filename = os.path.join(path, '5_tableau_moyennes.csv') #tableur où sont récup les données csv write openvibe
-#tableau_echantillons = pd.read_csv(csv_filename)
+rel_path = "/../../rawdata/csv_files/"
+rel_path_config = "/../csv_files/"
+
+path = os.getcwd()
+
 
 # Chargement des fichiers rest_target et rest_parasite
-csv_filename_target = os.path.join(path, 'rest_target.csv')
-csv_filename_parasite = os.path.join(path, 'rest_parasite.csv')
+csv_filename_target = os.path.join(path+rel_path, 'rest_target.csv')
+csv_filename_parasite = os.path.join(path+rel_path, 'rest_parasite.csv')
 
 tableau_echantillons_target = pd.read_csv(csv_filename_target)
 tableau_echantillons_parasite = pd.read_csv(csv_filename_parasite)
 
 
-#IL FAUT AUSSI LIRE LES VALEURS DU BETA PARASITE
-
 #lire les parametres a calculer
-path_instructions = os.path.join(path, "config_neurofeedback.csv")
+path_instructions = os.path.join(path+rel_path_config, "config_neurofeedback.csv")
 instructions = pd.read_csv(path_instructions)
 percentilePireBeta = instructions["percentilePireBeta"]
 percentileMeilleurBeta = instructions["percentileMeilleurBeta"]
