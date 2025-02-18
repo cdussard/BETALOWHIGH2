@@ -25,7 +25,7 @@ function process(box)
 	for i = 1,50 do
 		box:send_stimulation(1, OVTK_StimulationId_SegmentStop, t, 0)
 	
-		t = t + 2
+		t = t + 1.2
 
 	end
 	
