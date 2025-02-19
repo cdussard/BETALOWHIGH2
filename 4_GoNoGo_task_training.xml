@@ -207,7 +207,7 @@
 					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
 					<Name>Header filename</Name>
 					<DefaultValue>record-[$core{date}-$core{time}].vhdr</DefaultValue>
-					<Value>${__volatile_ScenarioDir}/../rawdata/4_gonoGoTraining.vhdr</Value>
+					<Value>${__volatile_ScenarioDir}/../rawdata/openvibe/4_gonoGoTraining_[$core{date}].vhdr</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
