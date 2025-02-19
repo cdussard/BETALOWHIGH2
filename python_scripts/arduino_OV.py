@@ -32,7 +32,12 @@ def getDict():#fait le lien entre l'entier recu (stim) et le label de la stim (a
         33037: "OVTK_StimulationId_Label_0D",
         33051: "OVTK_StimulationId_Label_1B",
         33054: "OVTK_StimulationId_Label_1E",
-        33055: "OVTK_StimulationId_Label_1F"
+        33055: "OVTK_StimulationId_Label_1F",
+        33024: "OVTK_StimulationID_LabelStart", 
+        32772: "OVTK_StimulationID_SegmentStop",
+        1 : "barre espace", #nom à changer
+        2 : "NoGo", #nom à changer
+        3 : "Go" #nom à changer
 }
 
 
@@ -44,11 +49,11 @@ def getDictInt():#TOUS VERIFIER LES COMMENTAIRES
   16: 126, #"OVTK_StimulationId_Number_10"
   17: 127, #"OVTK_StimulationId_Number_11"
   18: 128, #"OVTK_StimulationId_Number_12"
-  19:132,#OVTK_StimulationId_Number_13
-  20:133,#OVTK_StimulationId_Number_14
+  19: 132,#OVTK_StimulationId_Number_13
+  20: 133,#OVTK_StimulationId_Number_14
   260: 105, #"OVTK_GDF_Artifact_Movement"
   800: 106, #"OVTK_GDF_End_Of_Trial"
-  1010: 129, #"OVTK_GDF_End_Of_Session"
+  1010:  129, #"OVTK_GDF_End_Of_Session"
   32769: 110, #"OVTK_StimulationId_ExperimentStart"
   32770: 111, #"OVTK_StimulationId_ExperimentStop"
   32771: 122, #"OVTK_StimulationId_SegmentStart"
@@ -61,8 +66,10 @@ def getDictInt():#TOUS VERIFIER LES COMMENTAIRES
   33037: 119, #"OVTK_StimulationId_Label_0D"
   33051: 124, #"OVTK_StimulationId_Label_1B"
   33054: 130,#OVTK_StimulationId_Label_1E
-  33055:131,#OVTK_StimulationId_Label_1F
-
+  33055: 131,#OVTK_StimulationId_Label_1F
+  33024: 135, #"OVTK_StimulationID_LabelStart" 
+  32772: 123, #"OVTK_Stimulation_SegmentStop"
+  
 }
 
 def envoiTriggers_LSL(mode,port):
