@@ -91,7 +91,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     public Text Debug_texte;
     string modeDebug;
     public GameObject circleDebug;
-    string nomGonoGo = "6_noGO_tcp_v1";
+    string nomGonoGo = "6_GoNoGo";
 
 
     // gestion des stims
@@ -99,6 +99,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
     string currentStim = String.Empty;
     public string currentState = "";
     public string yokedOrNF = "";
+    public string NFtrain = "";
 
     //gestion des sauvegardes / comptage cycles trials blocs
     //yoked
@@ -220,6 +221,10 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
                         }
                         
 
+                    }
+                    else if (stim == 4)//currentStim == "OVTK_StimulationId_Number_04" // NF TRAINING
+                    {
+                        NFtrain = "train";
                     }
 
                     else if (stim == 32780)//currentStim == "OVTK_StimulationId_VisualStimulationStop"
@@ -373,7 +378,7 @@ public class neurofeedbackBETALOWHIGH2 : AFloatInlet
                     {
                         Debug.Log(i);
                         line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}", 
-                        yokedOrNF,
+                        yokedOrNF+NFtrain,
                         (i+1).ToString(), //attention ne peut pas etre cycleEnCours pck on save pas a chaque cycle
                         blocTotalEnCours.ToString(),
                         blocEnCours.ToString(),
