@@ -22,8 +22,9 @@ function process(box)
 
     t = t + 1 
     box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0)
-    t = t + 2
-
+    t = t + 1
+	box:send_stimulation(1, OVTK_StimulationId_Number_04, t, 0)
+	t = t + 1
     for i = 1, nb_of_blocks do
         box:send_stimulation(1, OVTK_StimulationId_Label_0C, t, 0) -- instruction imagine
 

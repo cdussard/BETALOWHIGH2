@@ -14,9 +14,9 @@ function initialize(box)
 	initial_FB_wait_duration = box:get_setting(10) 
     sequence_yoked_nf_blocks = {}
 	table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_13)--NF
-    --table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_15)-- gonogo
+    table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_15)-- gonogo
     table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_14)--YOKED
-    --table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_15)-- gonogo
+    table.insert(sequence_yoked_nf_blocks, OVTK_StimulationId_Number_15)-- gonogo
     n_trials_obs = 1
     n_trials_nf = 1
 
