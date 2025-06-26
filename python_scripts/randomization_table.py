@@ -22,6 +22,6 @@ randomization_table = pd.DataFrame({
 })
 
 # Sauvegarde en CSV
-randomization_table.to_csv("randomization_table.csv", index=False)
+randomization_table.to_csv("randomization_table_old.csv", index=False)
 
 print(randomization_table)
