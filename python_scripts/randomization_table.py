@@ -10,8 +10,6 @@ import pandas as pd
 # Nombre de participants
 n_participants = 20
 
-# Low = 1, High = 2
-
 # Création d'une liste équilibrée des ordres possibles
 orders = [(1, 2)] * (n_participants // 2) + [(2, 1)] * (n_participants // 2)
 random.shuffle(orders)  # Mélange aléatoire des ordres
